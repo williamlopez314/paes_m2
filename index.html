@@ -54,7 +54,7 @@
       joaquinr: { name: "Joaquín Alejandro Rivera Ceballos", pass: "PAESM2", role: "alumno", mustChangePass: true, pts: 0 }
     };
 
-    // BANCO DE MAPEO CON ENUNCIADOS TRANSCRITOS PARA IA
+    // BANCO DE MAPEO DE 55 PREGUNTAS M2
     const BANCO_PREGUNTAS_M2 = [
       {
         code: "DEMRE-2027-M2-01",
@@ -65,12 +65,12 @@
         texto: "Considera los números enteros positivos que tienen resto 2 al dividirlos por 5 y resto 4 al dividirlos por 7. Si los números anteriores se ordenan en una lista de manera creciente, ¿cuál es el segundo número de esa lista?",
         opciones: ["17", "32", "67", "137"],
         correcta: 2, // Alternativa C (67)
-        explicacionErrorB: "**ANÁLISIS ESPECÍFICO DEL ERROR (Alternativa B: 32):**\nAl elegir 32, encontraste el **primer número** de la lista ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$). Sin embargo, la pregunta del DEMRE pide el **SEGUNDO número** de la lista creciente. ¡Atención con leer completamente lo pedido en el enunciado!",
-        resolucionPasoAPaso: "**PASO 1: Planteamiento algebraico de residuos**\nBuscamos $x > 0$ tal que:\n$$x \\equiv 2 \\pmod 5 \\quad \\implies \\quad x = 5k + 2$$\n$$x \\equiv 4 \\pmod 7 \\quad \\implies \\quad x = 7m + 4$$\n\n**PASO 2: Encontrar los valores posibles**\nProbamos valores que cumplen $x = 7m + 4$ hasta encontrar los que dejan resto 2 al dividir por 5:\n• Si $m = 4 \\implies x = 7(4) + 4 = 32$ (Cumple: $32 = 5(6) + 2$). Este es el **1.er número**.\n• Como el mínimo común múltiplo entre 5 y 7 es $mcm(5,7) = 35$, la secuencia se repite cada 35 unidades.\n• El **2.º número** es: $32 + 35 = 67$.\n\n**CONCLUSIÓN:**\nLa alternativa correcta es **C) 67**."
+        explicacionAcierto: "### 🌟 CONSOLIDACIÓN DEL ACIERTO Y LA HABILIDAD\n\n¡Excelente respuesta! Elegiste la alternativa **C) 67**.\n\n**¿Por qué es correcta la alternativa C?**\n• Aplicaste la habilidad de **Resolución de Problemas M2** identificando que la condición requiere cumplir simultáneamente dos conminaciones de residuos:\n  $$x \\equiv 2 \\pmod 5 \\quad \\text{y} \\quad x \\equiv 4 \\pmod 7$$\n• Encontraste el primer número de la secuencia, que es **32** ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$).\n• Luego reconociste que el ciclo de repetición está dado por el Mínimo Común Múltiplo entre 5 y 7, es decir, $\\text{mcm}(5,7) = 35$.\n• Por lo tanto, el **SEGUNDO número** de la lista creciente es exactamente $32 + 35 = 67$.\n\n**Estrategia para no olvidar:**\nCada vez que tengas restos en divisiones simultáneas, encuentra el primer término y suma el MCM de los divisores para hallar los términos siguientes.",
+        explicacionErrorB: "### ⚠️ ANÁLISIS ESPECÍFICO DE TU ERROR (Alternativa B: 32)\n\n**1. ¿Por qué te equivocaste al seleccionar la B?**\nCometiste una distracción de lectura muy frecuente en la PAES M2: al calcular correctamente los valores que cumplen las condiciones, encontraste el número **32** ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$) y lo marcaste de inmediato. Sin embargo, el **32 es el PRIMER número** de la lista creciente, mientras que la pregunta exige hallar el **SEGUNDO número**.\n\n---\n\n### 📘 DESARROLLO MATEMÁTICO PASO A PASO\n\n**Paso 1: Expresar los números algebraicamente**\nUn número $x$ que deja resto 2 al dividir por 5 se escribe como $x = 5k + 2$.\nUn número $x$ que deja resto 4 al dividir por 7 se escribe como $x = 7m + 4$.\n\n**Paso 2: Hallar el primer término de la lista**\nEvaluamos valores de $x = 7m + 4$ que también dejen resto 2 al dividir por 5:\n- Para $m = 0 \\implies x = 4$ (Resto 4 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 1 \\implies x = 11$ (Resto 1 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 2 \\implies x = 18$ (Resto 3 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 3 \\implies x = 25$ (Resto 0 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 4 \\implies x = 32$ (Resto 2 al dividir por 5 $\\rightarrow$ **¡Cumple!**).\n\nEl **1.er número** de la lista es **32**.\n\n**Paso 3: Calcular el segundo número**\nComo los divisores son 5 y 7 (números primos entre sí), la propiedad indica que los números que cumplen esta condición se repiten cada $\\text{mcm}(5,7) = 35$ unidades.\n- 1.er número = $32$\n- **2.º número** = $32 + 35 = 67$\n- 3.er número = $67 + 35 = 102$\n\n---\n\n### 🎯 FOCO EN LA HABILIDAD: RESOLUCIÓN DE PROBLEMAS M2\nPara dominar esta habilidad, no basta con realizar los cálculos bien; debes volver a leer la pregunta antes de marcar. El DEMRE siempre coloca la respuesta del primer paso intermedio (en este caso 32) como distractor principal."
       }
     ];
 
-    // Autogenerar el resto de las 55 preguntas M2 2027
+    // Autogenerar los demás ítems con plantilla estructurada
     for (let i = 2; i <= 55; i++) {
       const num = String(i).padStart(2, '0');
       let eje = "Números";
@@ -88,8 +88,8 @@
         texto: `Ejercicio oficial M2 número ${i} correspondiente a ${eje}.`,
         opciones: ["A", "B", "C", "D"],
         correcta: 0,
-        explicacionErrorB: `**Análisis del Error (Alternativa B):** Cometiste una confusión en la prioridad de operaciones o en las restricciones de la variable en el eje ${eje}.`,
-        resolucionPasoAPaso: `**DESGLOSE PASO A PASO (${habilidad}):**\n1. Identificación de los datos y variables del ejercicio ${i}.\n2. Aplicación de la propiedad o teorema de ${eje}.\n3. Conclusión matemática directa.`
+        explicacionAcierto: `### 🌟 CONSOLIDACIÓN DEL ACIERTO Y LA HABILIDAD\n\n¡Excelente trabajo! Marcaste la opción correcta en el ítem de **${eje}**.\n\n**Demostración y Refuerzo:**\n• Aplicaste correctamente la propiedad fundamental de la habilidad **${habilidad}**.\n• Mantuviste el control de las operaciones algebraicas sin omitir restricciones.\n\nSigue aplicando esta estrategia para afianzar el contenido.`,
+        explicacionErrorB: `### ⚠️ ANÁLISIS ESPECÍFICO DE TU ERROR\n\n**1. Diagnóstico del error:**\nAl elegir esta alternativa, caíste en el distractor típico del DEMRE para **${eje}**: aplicaste una propiedad incompleta o confundiste el signo al despejar la variable principal.\n\n---\n\n### 📘 DESARROLLO MATEMÁTICO PASO A PASO\n1. **Paso 1:** Identificación de variables y condiciones iniciales.\n2. **Paso 2:** Aplicación del teorema o propiedad correspondiente en ${eje}.\n3. **Paso 3:** Despeje y verificación del resultado final.\n\n---\n\n### 🎯 FOCO EN LA HABILIDAD: ${habilidad}\nRecuerda revisar siempre la condición de validez antes de finalizar el desarrollo.`
       });
     }
 
@@ -230,25 +230,26 @@
 
         try {
           const promptText = `
-Eres un profesor experto pedagógico en la prueba de selección chilena PAES M2.
+Eres un profesor de matemáticas pedagógico de excelencia para la prueba de selección chilena PAES M2.
 Analiza la siguiente pregunta de la PAES M2 (${pregunta.code}):
 "${pregunta.texto}"
 
 Opciones: A) ${pregunta.opciones[0]} | B) ${pregunta.opciones[1]} | C) ${pregunta.opciones[2]} | D) ${pregunta.opciones[3]}
 
-El estudiante eligió la opción **${selectedLetter}**.
+El estudiante seleccionó la alternativa **${selectedLetter}**.
 Su respuesta es: ${isCorrect ? "CORRECTA" : "INCORRECTA"}.
 
-INSTRUCCIONES PEDAGÓGICAS ESTRICTAS:
-1. Si acertó (${isCorrect ? "SÍ" : "NO"}):
-   - Refuerza con argumentos sólidos por qué la opción ${selectedLetter} es la correcta.
-   - Destaca la habilidad evaluada: **${pregunta.habilidad}**.
+INSTRUCCIONES PEDAGÓGICAS RIGUROSAS:
+1. SI ES INCORRECTA:
+   - Sección 1: Explica de forma SUPER ESPECÍFICA cuál fue el error conceptual o distractor exacto que cometió al elegir la opción ${selectedLetter} (por ejemplo, si marcó el primer término en lugar del segundo).
+   - Sección 2: Muestra el desarrollo matemático PASO A PASO con explicaciones claras de cada propiedad utilizada.
+   - Sección 3: Concluye reforzando explícitamente cómo aplicar la habilidad evaluada: **${pregunta.habilidad}**.
 
-2. Si erró:
-   - Explica de forma SUPER ESPECÍFICA cuál fue el error o distractor en la alternativa ${selectedLetter} elegida (ejemplo: confundió la primera solución con la segunda).
-   - Entrega la resolución completa paso a paso enfocada en la habilidad **${pregunta.habilidad}**.
+2. SI ES CORRECTA:
+   - Argumenta pedagógicamente por qué la alternativa ${selectedLetter} es la correcta.
+   - Refuerza el procedimiento y la habilidad **${pregunta.habilidad}** para consolidar el conocimiento y evitar aciertos por azar.
 
-Usa KaTeX ($ en línea, $$ para bloques) para toda expresión matemática.
+Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación matemática.
 `;
 
           const response = await fetch(
@@ -264,14 +265,14 @@ Usa KaTeX ($ en línea, $$ para bloques) para toda expresión matemática.
           if (data.candidates && data.candidates[0] && data.candidates[0].content.parts[0].text) {
             setAiAnalysis(data.candidates[0].content.parts[0].text);
           } else {
-            throw new Error("Sin respuesta IA");
+            throw new Error("Respuesta no obtenida");
           }
         } catch (err) {
-          // FALLBACK PEDAGÓGICO AUTOMÁTICO (SI FALLA LA RED/API KEY)
+          // FALLBACK PEDAGÓGICO COMPLETO Y ESTRUCTURADO
           if (!isCorrect) {
-            setAiAnalysis(pregunta.explicacionErrorB + "\n\n" + pregunta.resolucionPasoAPaso);
+            setAiAnalysis(pregunta.explicacionErrorB || pregunta.explicacionAcierto);
           } else {
-            setAiAnalysis(`¡Excelente trabajo! Aplicaste con éxito la habilidad de **${pregunta.habilidad}** para resolver el ejercicio.\n\n` + pregunta.resolucionPasoAPaso);
+            setAiAnalysis(pregunta.explicacionAcierto);
           }
         } finally {
           setLoadingAiAnalysis(false);
@@ -524,13 +525,13 @@ Usa KaTeX ($ en línea, $$ para bloques) para toda expresión matemática.
                     <span className="text-xs text-slate-400 font-mono">Ítem {currentIndex + 1} de {preguntasFiltradas.length}</span>
                   </div>
 
-                  {/* VISOR DE LA IMAGEN EN LA CARPETA img/ */}
+                  {/* VISOR DIRECTO DE LA IMAGEN EN img/ */}
                   <DirectQuestionViewer 
                     src={currentPregunta.imagen} 
                     alt={`Ejercicio ${currentPregunta.code}`} 
                   />
 
-                  {/* ALTERNATIVAS A, B, C, D */}
+                  {/* SELECCIÓN DE ALTERNATIVAS A, B, C, D */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
                     {currentPregunta.opciones.map((val, idx) => {
                       const letter = ["A", "B", "C", "D"][idx];
@@ -560,7 +561,7 @@ Usa KaTeX ($ en línea, $$ para bloques) para toda expresión matemática.
                     })}
                   </div>
 
-                  {/* BLOQUE DE RETROALIMENTACIÓN PEDAGÓGICA Y ANÁLISIS ESPECÍFICO */}
+                  {/* RETROALIMENTACIÓN PROFUNDA (ANÁLISIS DEL ERROR + PASO A PASO + HABILIDAD) */}
                   {showFeedback && (
                     <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 space-y-4">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -588,10 +589,7 @@ Usa KaTeX ($ en línea, $$ para bloques) para toda expresión matemática.
                       ) : (
                         <div className="space-y-4">
                           <div className="text-sm text-slate-200 leading-relaxed bg-slate-900/90 p-5 rounded-xl border border-slate-800">
-                            <p className="font-bold text-blue-400 uppercase text-xs tracking-wider mb-2">
-                              Retroalimentación y Explicación Detallada:
-                            </p>
-                            <LatexRenderer text={aiAnalysis || "Análisis disponible."} />
+                            <LatexRenderer text={aiAnalysis || "Análisis no disponible."} />
                           </div>
                         </div>
                       )}
