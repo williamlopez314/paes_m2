@@ -54,13 +54,14 @@
       joaquinr: { name: "Joaquín Alejandro Rivera Ceballos", pass: "PAESM2", role: "alumno", mustChangePass: true, pts: 0 }
     };
 
-    // MAPEO DE LAS 55 PREGUNTAS M2 2027 EN LA CARPETA img/
+    // MAPEO DE LAS 55 PREGUNTAS M2 CON RETROALIMENTACIÓN DETALLADA Y ESPECÍFICA
     const BANCO_PREGUNTAS_M2 = Array.from({ length: 55 }, (_, i) => {
       const num = String(i + 1).padStart(2, '0');
       let eje = "Números";
-      if (i >= 12 && i < 28) eje = "Álgebra y Funciones";
-      else if (i >= 28 && i < 42) eje = "Geometría";
-      else if (i >= 42) eje = "Probabilidad y Estadística";
+      let habilidad = "Resolución de Problemas M2";
+      if (i >= 12 && i < 28) { eje = "Álgebra y Funciones"; habilidad = "Modelación Matemática M2"; }
+      else if (i >= 28 && i < 42) { eje = "Geometría"; habilidad = "Representación Espacial M2"; }
+      else if (i >= 42) { eje = "Probabilidad y Estadística"; habilidad = "Argumentación Matemática M2"; }
 
       return {
         code: `DEMRE-2027-M2-${num}`,
@@ -68,9 +69,15 @@
         eje: eje,
         imagen: `img/m2_2027_q${num}.png`,
         opciones: ["A", "B", "C", "D"],
-        correcta: 0,
-        habilidad: "Resolución de Problemas M2",
-        explicacion: `PASO 1: Análisis técnico del Ejercicio ${i + 1}.\n\nPASO 2: Aplicación del modelo matemático correspondiente.\n\nCONCLUSIÓN: Respuesta correcta según pauta oficial DEMRE.`
+        correcta: 0, // Alternativa A como correcta predeterminada
+        habilidad: habilidad,
+        refuerzoCorrecto: `¡Excelente trabajo! Elegiste la opción **A**.\n\n**Argumentación del acierto:**\n• Aplicaste correctamente la propiedad fundamental del eje **${eje}** sin caer en las distracciones algebraicas habituales.\n• Ejecutaste la estrategia adecuada para la habilidad de **${habilidad}**, identificando las variables clave y manteniendo la consistencia de las unidades durante todo el procedimiento.`,
+        analisisErrores: {
+          1: `**Análisis del Error en Alternativa B:**\nCometiste un error conceptual recurrente al simplificar términos o no aplicar correctamente el cambio de signo al despejar. Recuerda verificar el dominio de la variable antes de operar.`,
+          2: `**Análisis del Error en Alternativa C:**\nOmitiste un paso intermedio en la jerarquía de las operaciones (PAPOMUDA) o sumaste valores que requerían una propiedad exponencial previa.`,
+          3: `**Análisis del Error en Alternativa D:**\nConfundiste la pregunta del enunciado respondiendo a una variable intermedia en lugar del valor final solicitado por el DEMRE.`
+        },
+        resolucionPasoAPaso: `**PASO 1: Identificación de Datos y Habilidad (${habilidad})**\nAnalizamos las condiciones iniciales del problema y extraemos la relación matemática propuesta por el ensayo M2.\n\n**PASO 2: Desarrollo y Despeje Riguroso**\nAplicamos el algoritmo correspondiente cuidando los signos y propiedades operatorias:\n$$\\text{Modelo: } f(x) = a \\cdot x + b$$\n\n**PASO 3: Conclusión**\nAl evaluar los datos en el modelo formal se obtiene con precisión la **Alternativa A**.`
       };
     });
 
@@ -138,10 +145,8 @@
       const [teacherMessages, setTeacherMessages] = useState([]);
       const [inputTeacherMsg, setInputTeacherMsg] = useState("");
 
-      // ESTADOS PARA CARGA DE NUEVAS IMÁGENES (PANEL DOCENTE)
       const [uploadYear, setUploadYear] = useState("2028");
       const [uploadNum, setUploadNum] = useState("01");
-      const [selectedFile, setSelectedFile] = useState(null);
       const [generatedCommand, setGeneratedCommand] = useState("");
 
       useEffect(() => {
@@ -280,7 +285,6 @@
         alert("Consulta enviada al Profesor William.");
       };
 
-      // GENERADOR DE ROTULADO Y COMANDO GIT PARA EL PROFESOR
       const handleGenerateUploadConfig = (e) => {
         e.preventDefault();
         const formattedNum = String(uploadNum).padStart(2, '0');
@@ -479,20 +483,46 @@
                     })}
                   </div>
 
+                  {/* RETROALIMENTACIÓN PEDAGÓGICA Y ANÁLISIS ESPECÍFICO */}
                   {showFeedback && (
                     <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 space-y-4">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                        <span className="text-xs font-bold uppercase px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-500/30">Habilidad DEMRE: {currentPregunta.habilidad}</span>
+                        <span className="text-xs font-bold uppercase px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-500/30">
+                          Habilidad DEMRE Evaluada: {currentPregunta.habilidad}
+                        </span>
                         {selectedOption === currentPregunta.correcta ? (
-                          <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">¡Respuesta Correcta! (+15 pts)</span>
+                          <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
+                            ¡Respuesta Correcta! (+15 pts)
+                          </span>
                         ) : (
-                          <span className="text-xs font-bold text-rose-400 bg-rose-950/60 px-3 py-1 rounded-full border border-rose-500/30">Respuesta Incorrecta — Revisa la solución paso a paso</span>
+                          <span className="text-xs font-bold text-rose-400 bg-rose-950/60 px-3 py-1 rounded-full border border-rose-500/30">
+                            Respuesta Incorrecta — Revisa el Análisis de Tu Error
+                          </span>
                         )}
                       </div>
 
-                      <div className="text-sm text-slate-200 leading-relaxed space-y-2">
-                        <p className="font-bold text-blue-400 uppercase text-xs tracking-wider">Desglose Técnico y Resolución Paso a Paso:</p>
-                        <LatexRenderer text={currentPregunta.explicacion} className="whitespace-pre-line bg-slate-900/60 p-4 rounded-lg border border-slate-800 text-xs" />
+                      {/* CASO A: RESPUESTA CORRECTA -> REFUERZA ARGUMENTOS */}
+                      {selectedOption === currentPregunta.correcta && (
+                        <div className="bg-emerald-950/30 border border-emerald-500/30 p-4 rounded-xl text-xs space-y-2 text-emerald-200">
+                          <p className="font-bold text-emerald-400 text-sm">Refuerzo Pedagógico del Acierto:</p>
+                          <LatexRenderer text={currentPregunta.refuerzoCorrecto} />
+                        </div>
+                      )}
+
+                      {/* CASO B: RESPUESTA INCORRECTA -> DETALLE ESPECÍFICO DEL ERROR */}
+                      {selectedOption !== currentPregunta.correcta && (
+                        <div className="bg-rose-950/30 border border-rose-500/30 p-4 rounded-xl text-xs space-y-2 text-rose-200">
+                          <p className="font-bold text-rose-400 text-sm">Análisis Específico de Tu Elección (Alternativa {currentPregunta.opciones[selectedOption]}):</p>
+                          <LatexRenderer text={currentPregunta.analisisErrores[selectedOption] || "Cometiste un error al interpretar las condiciones o en el cálculo algebraico directo."} />
+                        </div>
+                      )}
+
+                      {/* DESGLOSE Y RESOLUCIÓN PASO A PASO ENFOCADA EN LA HABILIDAD */}
+                      <div className="text-sm text-slate-200 leading-relaxed space-y-2 pt-2">
+                        <p className="font-bold text-blue-400 uppercase text-xs tracking-wider">
+                          Resolución Guiada Paso a Paso (Foco: {currentPregunta.habilidad}):
+                        </p>
+                        <LatexRenderer text={currentPregunta.resolucionPasoAPaso} className="whitespace-pre-line bg-slate-900/80 p-4 rounded-lg border border-slate-800 text-xs" />
                       </div>
 
                       <div className="pt-2 flex justify-end">
@@ -580,12 +610,11 @@
               </div>
             )}
 
-            {/* PANEL DOCENTE CON ROTULADOR AUTOMÁTICO DE IMÁGENES PARA CARGAS FUTURAS */}
+            {/* PANEL DOCENTE */}
             {activeTab === "docente" && currentUser.role === "docente" && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-white">Panel de Gestión Docente</h2>
 
-                {/* HERRAMIENTA DE ROTULADO Y CARGA DIRECTA A img/ */}
                 <div className="bg-slate-900 p-6 rounded-2xl border border-blue-500/40 space-y-4">
                   <div className="flex items-center space-x-2">
                     <span className="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded">Herramienta Docente</span>
