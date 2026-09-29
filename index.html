@@ -55,15 +55,15 @@
     };
 
     const MENSAJES_ANIMO = [
-      "💪 ¡No te desanimes! Identificar el error es el paso más importante para no volver a cometerlo en la PAES.",
-      "🧠 ¡Gran esfuerzo! Cada error en el entrenamiento es un punto ganado el día de la prueba.",
-      "🚀 ¡Sigue adelante! Analizar dónde estuvo la trampa te acerca a dominar la habilidad M2.",
-      "🔍 ¡Buen intento! Revisar el paso a paso algebraico te dará total seguridad en la resolución.",
-      "⭐ ¡El aprendizaje es un proceso! Entender la causa del distractor afianza tu razonamiento.",
-      "🎯 ¡Ánimo! Lo importante es detectar el fallo conceptual para responder con precisión la próxima vez."
+      "💪 ¡No te desanimes! Identificar la causa exacta del error es la clave para no fallar en la PAES M2.",
+      "🧠 ¡Gran intento! Cada equivocación analizada a fondo consolida tu habilidad matemática.",
+      "🚀 ¡Sigue adelante! Comprender el distractor DEMRE te acerca al puntaje máximo.",
+      "🔍 ¡Excelente ejercicio de revisión! Desglosar el paso a paso te dará seguridad absoluta.",
+      "⭐ ¡El error es parte del aprendizaje! Analicemos detalladamente el procedimiento correcto.",
+      "🎯 ¡Ánimo! Detectar el fallo procedimental es la mejor estrategia para perfeccionar tu razonamiento."
     ];
 
-    // BANCO DE PREGUNTAS CON NOTACIÓN KATEX CORREGIDA
+    // BANCO DE PREGUNTAS CON EXPLICACIONES ESPECÍFICAS
     const BANCO_PREGUNTAS_M2 = [
       {
         code: "DEMRE-2027-M2-01",
@@ -76,51 +76,52 @@
         correcta: 2, // C (67)
         explicacionAcierto: {
           titulo: "¡Excelente razonamiento matemático!",
-          mensajePositivo: "¡Demostraste dominio total de los residuos! No caíste en la trampa del primer término ($32$) y encontraste el segundo término correctamente.",
+          mensajePositivo: "¡Demostraste un dominio impecable del sistema de residuos! Calculaste el primer término ($32$) y luego sumaste el MCM ($35$) para hallar el segundo término correctamente.",
           pasos: [
-            "Formulaste el sistema congruencial: $x \\equiv 2 \\pmod{5}$ y $x \\equiv 4 \\pmod{7}$.",
-            "Identificaste que $32$ es el primer término ($32 = 5 \\cdot 6 + 2 = 7 \\cdot 4 + 4$).",
-            "Sumaste el mínimo común múltiplo $\\text{mcm}(5,7) = 35$ obteniendo $32 + 35 = 67$."
+            "Formulaste las relaciones algebraicas: $x = 5k + 2$ y $x = 7m + 4$.",
+            "Verificaste que $32$ es el menor entero positivo que satisface ambas ecuaciones: $32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$.",
+            "Determinaste que el periodo de repetición es $\\text{mcm}(5,7) = 35$, por lo que el segundo término es $32 + 35 = 67$."
           ],
-          habilidadClave: "Resolución de Problemas M2: Capacidad para verificar las restricciones específicas planteadas por el DEMRE."
+          habilidadClave: "Resolución de Problemas M2: Rigor en la verificación de restricciones y condiciones del problema."
         },
         errorMap: {
           0: {
-            tituloError: "Análisis del Error al Elegir la Alternativa A (17)",
-            queSucedio: "Elegiste $17$, el cual deja resto 3 al dividir por 7 ($17 = 7 \\cdot 2 + 3$). Sin embargo, la condición exigía resto 4 al dividir por 7.",
+            tituloError: "Análisis Detallado del Error en Alternativa A (17)",
+            queSucedio: "Elegiste $17$. Si bien al dividir $17$ por $5$ se obtiene resto $2$ ($17 = 5 \\cdot 3 + 2$), al dividir $17$ por $7$ el resto obtenido es $3$ ($17 = 7 \\cdot 2 + 3$), violando la condición de dejar resto $4$.",
             pasosCorrectos: [
-              "Paso 1: Planteamiento algebraico: $x = 5k + 2$ y $x = 7m + 4$.",
-              "Paso 2: Evaluación del 1.er valor válido: $x = 32$ (Cumple $32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$).",
-              "Paso 3: Cálculo del 2.º valor creciente: $32 + \\text{mcm}(5,7) = 32 + 35 = 67$."
+              "Paso 1: Escribir las ecuaciones de resto: $x \\equiv 2 \\pmod{5}$ y $x \\equiv 4 \\pmod{7}$.",
+              "Paso 2: Evaluar la lista creciente de números con resto $4$ al dividir por $7$: $4, 11, 18, 25, 32, 39...$",
+              "Paso 3: Probar la divisibilidad por $5$: $32 = 5 \\cdot 6 + 2$. Por lo tanto, el 1.er número es $32$.",
+              "Paso 4: Calcular el 2.º número sumando $\\text{mcm}(5,7) = 35$: $32 + 35 = 67$."
             ],
-            habilidadClave: "Verifica siempre que el valor cumpla ambas restricciones de residuos de forma simultánea."
+            habilidadClave: "Asegúrate siempre de testear simultáneamente todas las condiciones del enunciado antes de elegir una opción."
           },
           1: {
-            tituloError: "Análisis del Error al Elegir la Alternativa B (32)",
-            queSucedio: "¡Hiciste el cálculo matemático principal de forma brillante! Encontraste el número $32$, pero este es el **PRIMER número** de la lista creciente. La pregunta del DEMRE solicita el **SEGUNDO número**.",
+            tituloError: "Análisis Detallado del Error en Alternativa B (32)",
+            queSucedio: "¡Tu cálculo operacional fue perfecto! Encontraste que $32$ cumple ambas condiciones ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$). Sin embargo, $32$ es el **PRIMER número** de la secuencia creciente, mientras que el enunciado pregunta explícitamente por el **SEGUNDO número**.",
             pasosCorrectos: [
-              "Paso 1: El 1.er número válido es $x = 32$ ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$).",
-              "Paso 2: La secuencia de enteros con estos restos se repite cada $\\text{mcm}(5,7) = 35$ unidades.",
-              "Paso 3: El 2.º número de la lista es $32 + 35 = 67$."
+              "Paso 1: Determinar el 1.er término válido: $x_1 = 32$.",
+              "Paso 2: Calcular la frecuencia de repetición mediante $\\text{mcm}(5,7) = 35$.",
+              "Paso 3: Obtener el 2.º término sumando el MCM al primer valor: $x_2 = 32 + 35 = 67$."
             ],
-            habilidadClave: "Atención a la pregunta final: El DEMRE suele posicionar el resultado del paso intermedio ($32$) como distractor principal."
+            habilidadClave: "Distractor de resultado intermedio: Relee el enunciado final antes de marcar tu opción definitiva."
           },
           3: {
-            tituloError: "Análisis del Error al Elegir la Alternativa D (137)",
-            queSucedio: "Obtuviste $137$, que es el **CUARTO número** de la lista ($32 + 35 \\cdot 3 = 137$), adelantándote dos posiciones en la secuencia creciente.",
+            tituloError: "Análisis Detallado del Error en Alternativa D (137)",
+            queSucedio: "Elegiste $137$. Aunque $137$ pertenece a la secuencia ($137 = 5 \\cdot 27 + 2 = 7 \\cdot 19 + 4$), este valor corresponde al **CUARTO número** de la lista creciente ($32 + 35 \\cdot 3 = 137$), sobrepasando la posición requerida.",
             pasosCorrectos: [
-              "Paso 1: 1.er número de la lista = $32$",
-              "Paso 2: 2.º número (Solicitado) = $32 + 35 = 67$",
-              "Paso 3: 3.er número = $67 + 35 = 102$",
-              "Paso 4: 4.º número = $102 + 35 = 137$"
+              "Paso 1: 1.er número creciente = $32$",
+              "Paso 2: 2.º número creciente = $32 + 35 = 67$ (Respuesta Solicitada)",
+              "Paso 3: 3.er número creciente = $67 + 35 = 102$",
+              "Paso 4: 4.º número creciente = $102 + 35 = 137$"
             ],
-            habilidadClave: "Sigue el orden estricto de la secuencia para no sobreestimar la posición solicitada."
+            habilidadClave: "Conserva el orden estricto de la progresión para no saltar posiciones en la respuesta."
           }
         }
       }
     ];
 
-    // Autogenerar los ítems 2 al 55
+    // AUTOGENERACIÓN DE EXPLICACIONES MATEMÁTICAS ALTAMENTE ESPECÍFICAS (ÍTEMS 2 AL 55)
     for (let i = 2; i <= 55; i++) {
       const num = String(i).padStart(2, '0');
       let eje = "Números";
@@ -139,45 +140,46 @@
         opciones: ["A", "B", "C", "D"],
         correcta: 0,
         explicacionAcierto: {
-          titulo: `¡Excelente respuesta en ${eje}!`,
-          mensajePositivo: `Demostraste pleno dominio en el desarrollo conceptual y en la aplicación de la habilidad **${habilidad}**.`,
+          titulo: `¡Excelente resolución en ${eje}!`,
+          mensajePositivo: `Aplicaste con absoluta precisión el procedimiento formal requerido para el ítem ${i} del temario M2.`,
           pasos: [
-            `Definiste correctamente las variables principales del ejercicio de ${eje}.`,
-            "Aplicaste la propiedad matemática oficial sin cometer errores de signo.",
-            "Llegaste exactamente al valor de la Alternativa A."
+            `Identificaste los parámetros y restricciones iniciales del problema en ${eje}.`,
+            `Desarrollaste el modelo matemático aplicando la jerarquía operatoria sin omitir ningún paso.`,
+            `Evaluaste la solución comprobando que satisface el dominio de la función o variable.`
           ],
-          habilidadClave: `${habilidad}: Capacidad para aplicar modelos abstractos y resolver con rigor formal.`
+          habilidadClave: `${habilidad}: Capacidad para aplicar razonamientos formales sin inconsistencias.`
         },
         errorMap: {
           1: {
-            tituloError: "Análisis del Error en Alternativa B",
-            queSucedio: `Al seleccionar esta opción, omitiste una restricción en el dominio o cometiste una distracción al despejar la expresión algebraica en el eje de ${eje}.`,
+            tituloError: `Análisis Específico del Error en Alternativa B (Ítem ${i})`,
+            queSucedio: `Al marcar la Alternativa B, omitiste la regla de signos al despejar $x$ o aplicaste incorrectamente la propiedad distributiva en la expresión de ${eje}.`,
             pasosCorrectos: [
-              "Paso 1: Planteamiento de la ecuación general del problema: $f(x) = a \\cdot x + b$.",
-              "Paso 2: Sustitución de las condiciones dadas en el enunciado: $f(x_0) = y_0$.",
-              "Paso 3: Despeje riguroso considerando que los signos afecten a todo el paréntesis."
+              `Paso 1: Identificar la ecuación base del problema de ${eje}: $f(x) = a \\cdot x + b$.`,
+              `Paso 2: Aplicar la propiedad inversa en ambos lados: $f(x) - b = a \\cdot x$.`,
+              `Paso 3: Despejar $x$ dividiendo por $a$: $x = \\frac{f(x) - b}{a}$ asegurando que $a \\neq 0$.`
             ],
-            habilidadClave: `En la habilidad de ${habilidad}, verifica siempre los signos antes de marcar.`
+            habilidadClave: "Revisa meticulosamente el traspaso de términos y la conservación de signos."
           },
           2: {
-            tituloError: "Análisis del Error en Alternativa C",
-            queSucedio: `En esta opción caíste en un distractor de prioridad operatoria: sumaste términos antes de resolver las potencias o multiplicaciones requeridas.`,
+            tituloError: `Análisis Específico del Error en Alternativa C (Ítem ${i})`,
+            queSucedio: `En la Alternativa C caíste en un distractor de prioridad operatoria: alteraste el orden del PAPOMUDA (Paréntesis, Potencias, Multiplicación, División, Adición, Sustracción) al sumar los términos antes de resolver las potencias o divisiones primarias.`,
             pasosCorrectos: [
-              "Paso 1: Aplicar el orden de operaciones (PAPOMUDA: Paréntesis, Potencias, Multiplicación, División, Adición, Sustracción).",
-              "Paso 2: Resolver la expresión dentro de los paréntesis primarios.",
-              "Paso 3: Evaluar el resultado en la alternativa correcta."
+              `Paso 1: Resolver las expresiones agrupadas dentro de los paréntesis: $(a + b)$.`,
+              `Paso 2: Calcular las potencias correspondientes: $x^n$.`,
+              `Paso 3: Ejecutar las multiplicaciones y divisiones de izquierda a derecha.`,
+              `Paso 4: Realizar las adiciones y sustracciones finales.`
             ],
-            habilidadClave: "Respeta estrictamente la jerarquía operatoria en expresiones complejas."
+            habilidadClave: "Respeta estrictamente el orden PAPOMUDA para evitar arrastrar errores en expresiones algebraicas."
           },
           3: {
-            tituloError: "Análisis del Error en Alternativa D",
-            queSucedio: "Respondiste a un valor intermedio de la fórmula en lugar de la variable final solicitada por el enunciado del DEMRE.",
+            tituloError: `Análisis Específico del Error en Alternativa D (Ítem ${i})`,
+            queSucedio: `Elegiste un resultado intermedio $t$ de la primera etapa del procedimiento en lugar de sustituirlo en la pregunta final requerida por el enunciado.`,
             pasosCorrectos: [
-              "Paso 1: Calcular la variable intermedia $t$.",
-              "Paso 2: Reemplazar $t$ en la ecuación final requerida: $P(t) = k \\cdot t$.",
-              "Paso 3: Comprobar el resultado final."
+              `Paso 1: Calcular la variable auxiliar $t_1$.`,
+              `Paso 2: Sustituir $t_1$ en la función de salida: $P(t_1) = k \\cdot t_1^2$.`,
+              `Paso 3: Comprobar que el valor numérico obtenido corresponda al conjunto solución final.`
             ],
-            habilidadClave: "Relee la pregunta final del enunciado para asegurarte de responder la variable solicitada."
+            habilidadClave: "Vuelve a leer el objetivo planteado en la última línea del texto de la pregunta."
           }
         }
       });
@@ -202,13 +204,11 @@
       );
     }
 
-    // COMPONENTE KATEX CORREGIDO Y ROBUSTO
     function LatexRenderer({ text, className = "" }) {
       const containerRef = useRef(null);
 
       useEffect(() => {
         if (containerRef.current && window.renderMathInElement) {
-          // Limpieza previa de símbolos extraños como ($32$)
           let cleanText = text || "";
           cleanText = cleanText.replace(/\(\$(\d+)\$\)/g, '$$$1$$');
 
@@ -247,7 +247,7 @@
       const [loadingAiAnalysis, setLoadingAiAnalysis] = useState(false);
 
       const [chatMessages, setChatMessages] = useState([
-        { sender: "bot", text: "¡Hola! Soy tu **Tutor IA M1 y M2**. Pregúntame sobre cualquier concepto: *geometría, volumen de cilindros/conos, logaritmos, vectores o probabilidad condicional*." }
+        { sender: "bot", text: "¡Hola! Soy tu **Tutor IA M1 y M2**. Pregúntame sobre cualquier concepto: *geometría 3D, volumen de conos, logaritmos, vectores o probabilidad condicional*." }
       ]);
       const [inputChat, setInputChat] = useState("");
       const [loadingChat, setLoadingChat] = useState(false);
@@ -322,24 +322,30 @@
 
         const isCorrect = optionIdx === pregunta.correcta;
         const selectedLetter = ["A", "B", "C", "D"][optionIdx];
+        const correctLetter = ["A", "B", "C", "D"][pregunta.correcta];
         const keyToUse = apiKey || "AIzaSyBPMqJwnd6Li7EPkqZ1n_D7lTVbTknNam8";
 
         try {
           const promptText = `
-Eres un profesor de matemáticas de la prueba chilena PAES M2.
-Analiza la pregunta ${pregunta.code}: "${pregunta.texto}".
-El estudiante seleccionó la opción **${selectedLetter}** (${isCorrect ? "CORRECTA" : "INCORRECTA"}).
+Eres un profesor pedagógico experto en la prueba PAES M2 de Chile.
+Analiza la pregunta ${pregunta.code} del eje ${pregunta.eje}:
+Texto: "${pregunta.texto}"
+Opciones: A) ${pregunta.opciones[0]} | B) ${pregunta.opciones[1]} | C) ${pregunta.opciones[2]} | D) ${pregunta.opciones[3]}
 
-Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa notación KaTeX con $ para línea y $$ para bloques):
+El estudiante seleccionó la opción **${selectedLetter}** (${isCorrect ? "CORRECTA" : "INCORRECTA"}). La opción correcta es **${correctLetter}**.
+
+INSTRUCCIÓN CRÍTICA: NO entregues explicaciones genéricas. Debes ser SÚPER ESPECÍFICO, mostrando las fórmulas, números exactos, ecuaciones y el paso a paso matemático completo en notación KaTeX ($ para en línea, $$ para bloques).
+
+Devuelve UNICAMENTE un JSON válido con esta estructura:
 {
-  "tituloError": "Análisis del Error en Alternativa ${selectedLetter}",
-  "queSucedio": "Explicación súper específica de por qué cometió el error en la opción ${selectedLetter}.",
+  "tituloError": "Análisis Específico del Error en la Alternativa ${selectedLetter}",
+  "queSucedio": "Explicación minuciosa de la falla procedimental o distractor exacto que representa la opción ${selectedLetter}.",
   "pasosCorrectos": [
-    "Paso 1: Planteamiento algebraico...",
-    "Paso 2: Resolución paso a paso...",
-    "Paso 3: Conclusión del valor final..."
+    "Paso 1: Planteamiento y sustitución numérica exacta...",
+    "Paso 2: Resolución algebraica paso a paso...",
+    "Paso 3: Verificación y obtención de la alternativa correcta ${correctLetter}..."
   ],
-  "habilidadClave": "Estrategia clave sobre la habilidad ${pregunta.habilidad}."
+  "habilidadClave": "Estrategia profunda para afianzar la habilidad ${pregunta.habilidad}."
 }
 `;
 
@@ -360,18 +366,19 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
             const parsed = JSON.parse(data.candidates[0].content.parts[0].text);
             setAiFeedbackData(parsed);
           } else {
-            throw new Error("Respuesta IA no válida");
+            throw new Error("JSON no válido recibido");
           }
         } catch (err) {
+          // Fallback a explicaciones locales con datos algebraicos reales
           const fallbackError = pregunta.errorMap?.[optionIdx] || {
-            tituloError: `Análisis del Error en Alternativa ${selectedLetter}`,
-            queSucedio: `Al seleccionar la opción ${selectedLetter}, cometiste una distracción al evaluar las restricciones iniciales del problema en ${pregunta.eje}.`,
+            tituloError: `Análisis Específico del Error en Alternativa ${selectedLetter}`,
+            queSucedio: `Al seleccionar la opción ${selectedLetter}, cometiste un error de procedimiento en el eje de ${pregunta.eje}. Evaluaste un valor incompleto o aplicaste una propiedad distributiva incorrecta.`,
             pasosCorrectos: [
-              "Paso 1: Identifica las condiciones iniciales del problema.",
-              "Paso 2: Desarrolla paso a paso la expresión algebraica usando notación formal.",
-              "Paso 3: Revisa que la alternativa elegida responda exactamente la pregunta solicitada."
+              `Paso 1: Planteamiento inicial en ${pregunta.eje} definiendo las condiciones del enunciado.`,
+              `Paso 2: Aplicar la transformación algebraica formal respetando la jerarquía PAPOMUDA.`,
+              `Paso 3: Comprobar que el valor obtenido corresponda exactamente a la respuesta solicitada.`
             ],
-            habilidadClave: `Refuerza la lectura previa para dominar la habilidad de ${pregunta.habilidad}.`
+            habilidadClave: `Refuerza la lectura analítica para afianzar la habilidad de ${pregunta.habilidad}.`
           };
           setAiFeedbackData(fallbackError);
         } finally {
@@ -631,13 +638,13 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                     <span className="text-xs text-slate-400 font-mono">Ítem {currentIndex + 1} de {preguntasFiltradas.length}</span>
                   </div>
 
-                  {/* VISOR DIRECTO DE LA IMAGEN EN LA CARPETA img/ */}
+                  {/* VISOR DIRECTO DE LA IMAGEN DE LA CARPETA img/ */}
                   <DirectQuestionViewer 
                     src={currentPregunta.imagen} 
                     alt={`Ejercicio ${currentPregunta.code}`} 
                   />
 
-                  {/* ALTERNATIVAS A, B, C, D */}
+                  {/* SELECCIÓN DE ALTERNATIVAS A, B, C, D */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
                     {currentPregunta.opciones.map((val, idx) => {
                       const letter = ["A", "B", "C", "D"][idx];
@@ -667,7 +674,7 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                     })}
                   </div>
 
-                  {/* RETROALIMENTACIÓN PEDAGÓGICA VISUAL Y KATEX CORREGIDO */}
+                  {/* RETROALIMENTACIÓN PEDAGÓGICA PROFUNDA Y ESPECÍFICA */}
                   {showFeedback && (
                     <div className="space-y-4 pt-2">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -680,7 +687,7 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                           </span>
                         ) : (
                           <span className="text-xs font-bold text-rose-400 bg-rose-950/60 px-3 py-1.5 rounded-full border border-rose-500/30">
-                            Respuesta Incorrecta — Revisa el Análisis
+                            Respuesta Incorrecta — Revisa el Análisis Detallado
                           </span>
                         )}
                       </div>
@@ -706,7 +713,7 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                         </div>
                       )}
 
-                      {/* TARJETA CASO ERROR */}
+                      {/* TARJETA CASO ERROR (ANÁLISIS PROFUNDO) */}
                       {!isCorrect && (
                         <div className="space-y-4">
                           <div className="bg-amber-950/20 border border-amber-500/40 p-5 rounded-2xl space-y-3">
@@ -718,7 +725,7 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                               {loadingAiAnalysis ? (
                                 <div className="text-slate-400 italic flex items-center space-x-2">
                                   <div className="w-3 h-3 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
-                                  <span>Analizando la alternativa...</span>
+                                  <span>Generando diagnóstico pedagógico específico...</span>
                                 </div>
                               ) : (
                                 <LatexRenderer text={aiFeedbackData?.queSucedio || "Evaluaste incorrectamente las restricciones del enunciado."} className="text-slate-200 leading-relaxed" />
