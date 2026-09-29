@@ -54,7 +54,6 @@
       joaquinr: { name: "Joaquín Alejandro Rivera Ceballos", pass: "PAESM2", role: "alumno", mustChangePass: true, pts: 0 }
     };
 
-    // COLECCIÓN DE MENSAJES DE REFUERZO POSITIVO VARIABLES
     const MENSAJES_ANIMO = [
       "💪 ¡No te desanimes! Identificar el error es el paso más importante para no volver a cometerlo en la PAES.",
       "🧠 ¡Gran esfuerzo! Cada error en el entrenamiento es un punto ganado el día de la prueba.",
@@ -64,7 +63,7 @@
       "🎯 ¡Ánimo! Lo importante es detectar el fallo conceptual para responder con precisión la próxima vez."
     ];
 
-    // BANCO DE MAPEO DE PREGUNTAS M2
+    // BANCO DE PREGUNTAS CON NOTACIÓN KATEX CORREGIDA
     const BANCO_PREGUNTAS_M2 = [
       {
         code: "DEMRE-2027-M2-01",
@@ -79,7 +78,7 @@
           titulo: "¡Excelente razonamiento matemático!",
           mensajePositivo: "¡Demostraste dominio total de los residuos! No caíste en la trampa del primer término ($32$) y encontraste el segundo término correctamente.",
           pasos: [
-            "Formulaste el sistema congruencial: $x \\equiv 2 \\pmod 5$ y $x \\equiv 4 \\pmod 7$.",
+            "Formulaste el sistema congruencial: $x \\equiv 2 \\pmod{5}$ y $x \\equiv 4 \\pmod{7}$.",
             "Identificaste que $32$ es el primer término ($32 = 5 \\cdot 6 + 2 = 7 \\cdot 4 + 4$).",
             "Sumaste el mínimo común múltiplo $\\text{mcm}(5,7) = 35$ obteniendo $32 + 35 = 67$."
           ],
@@ -121,7 +120,7 @@
       }
     ];
 
-    // Autogenerar los ítems 2 al 55 con desarrollo algebraico completo
+    // Autogenerar los ítems 2 al 55
     for (let i = 2; i <= 55; i++) {
       const num = String(i).padStart(2, '0');
       let eje = "Números";
@@ -203,12 +202,17 @@
       );
     }
 
+    // COMPONENTE KATEX CORREGIDO Y ROBUSTO
     function LatexRenderer({ text, className = "" }) {
       const containerRef = useRef(null);
 
       useEffect(() => {
         if (containerRef.current && window.renderMathInElement) {
-          containerRef.current.innerHTML = text;
+          // Limpieza previa de símbolos extraños como ($32$)
+          let cleanText = text || "";
+          cleanText = cleanText.replace(/\(\$(\d+)\$\)/g, '$$$1$$');
+
+          containerRef.current.innerHTML = cleanText;
           window.renderMathInElement(containerRef.current, {
             delimiters: [
               { left: "$$", right: "$$", display: true },
@@ -359,7 +363,6 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
             throw new Error("Respuesta IA no válida");
           }
         } catch (err) {
-          // Fallback a los datos estructurados locales
           const fallbackError = pregunta.errorMap?.[optionIdx] || {
             tituloError: `Análisis del Error en Alternativa ${selectedLetter}`,
             queSucedio: `Al seleccionar la opción ${selectedLetter}, cometiste una distracción al evaluar las restricciones iniciales del problema en ${pregunta.eje}.`,
@@ -381,7 +384,6 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
         setSelectedOption(optionIdx);
         setShowFeedback(true);
 
-        // Seleccionar mensaje de ánimo aleatorio
         const msgRandom = MENSAJES_ANIMO[Math.floor(Math.random() * MENSAJES_ANIMO.length)];
         setMensajeAnimoActual(msgRandom);
 
@@ -665,7 +667,7 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                     })}
                   </div>
 
-                  {/* RETROALIMENTACIÓN PEDAGÓGICA VISUAL ORGANIZADA */}
+                  {/* RETROALIMENTACIÓN PEDAGÓGICA VISUAL Y KATEX CORREGIDO */}
                   {showFeedback && (
                     <div className="space-y-4 pt-2">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -683,14 +685,14 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                         )}
                       </div>
 
-                      {/* TARJETA CASO ACIERTO (VERDE) */}
+                      {/* TARJETA CASO ACIERTO */}
                       {isCorrect && (
                         <div className="bg-emerald-950/30 border border-emerald-500/40 p-5 rounded-2xl space-y-4">
                           <div className="flex items-center space-x-2 text-emerald-400 font-bold text-base">
                             <span>🌟</span>
                             <h3>{feedbackData?.titulo}</h3>
                           </div>
-                          <p className="text-xs text-slate-200">{feedbackData?.mensajePositivo}</p>
+                          <LatexRenderer text={feedbackData?.mensajePositivo} className="text-xs text-slate-200" />
                           
                           <div className="bg-slate-950/60 p-4 rounded-xl border border-emerald-500/20 space-y-2 text-xs">
                             <p className="font-bold text-emerald-300 uppercase tracking-wider">Pasos de Confirmación:</p>
@@ -704,10 +706,9 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                         </div>
                       )}
 
-                      {/* TARJETA CASO ERROR (AMARILLO/AZUL) */}
+                      {/* TARJETA CASO ERROR */}
                       {!isCorrect && (
                         <div className="space-y-4">
-                          {/* MENSAJE DE ÁNIMO DINÁMICO Y DIAGNÓSTICO DEL ERROR */}
                           <div className="bg-amber-950/20 border border-amber-500/40 p-5 rounded-2xl space-y-3">
                             <h3 className="text-amber-400 font-bold text-sm leading-relaxed">{mensajeAnimoActual}</h3>
                             <div className="bg-slate-950/70 p-4 rounded-xl border border-amber-500/20 text-xs space-y-2">
@@ -717,7 +718,7 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                               {loadingAiAnalysis ? (
                                 <div className="text-slate-400 italic flex items-center space-x-2">
                                   <div className="w-3 h-3 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
-                                  <span>Analizando el error de la alternativa seleccionada...</span>
+                                  <span>Analizando la alternativa...</span>
                                 </div>
                               ) : (
                                 <LatexRenderer text={aiFeedbackData?.queSucedio || "Evaluaste incorrectamente las restricciones del enunciado."} className="text-slate-200 leading-relaxed" />
@@ -725,7 +726,6 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                             </div>
                           </div>
 
-                          {/* DESARROLLO MATEMÁTICO PASO A PASO CON KATEX */}
                           <div className="bg-slate-950/80 border border-slate-800 p-5 rounded-2xl space-y-3">
                             <div className="flex items-center space-x-2 text-blue-400 font-bold text-sm">
                               <span>📘</span>
@@ -746,7 +746,6 @@ Devuelve UNICAMENTE un objeto JSON válido con esta estructura estricta (usa not
                             )}
                           </div>
 
-                          {/* FOCO EN LA HABILIDAD DEMRE */}
                           <div className="bg-indigo-950/30 border border-indigo-500/30 p-4 rounded-xl text-xs space-y-1">
                             <p className="font-bold text-indigo-300 flex items-center space-x-2">
                               <span>🎯</span>
