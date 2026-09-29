@@ -54,7 +54,7 @@
       joaquinr: { name: "Joaquín Alejandro Rivera Ceballos", pass: "PAESM2", role: "alumno", mustChangePass: true, pts: 0 }
     };
 
-    // BANCO DE MAPEO DE 55 PREGUNTAS M2
+    // BANCO ESTRUCTURADO CON RETROALIMENTACIÓN VISUAL PEDAGÓGICA
     const BANCO_PREGUNTAS_M2 = [
       {
         code: "DEMRE-2027-M2-01",
@@ -65,12 +65,55 @@
         texto: "Considera los números enteros positivos que tienen resto 2 al dividirlos por 5 y resto 4 al dividirlos por 7. Si los números anteriores se ordenan en una lista de manera creciente, ¿cuál es el segundo número de esa lista?",
         opciones: ["17", "32", "67", "137"],
         correcta: 2, // Alternativa C (67)
-        explicacionAcierto: "### 🌟 CONSOLIDACIÓN DEL ACIERTO Y LA HABILIDAD\n\n¡Excelente respuesta! Elegiste la alternativa **C) 67**.\n\n**¿Por qué es correcta la alternativa C?**\n• Aplicaste la habilidad de **Resolución de Problemas M2** identificando que la condición requiere cumplir simultáneamente dos conminaciones de residuos:\n  $$x \\equiv 2 \\pmod 5 \\quad \\text{y} \\quad x \\equiv 4 \\pmod 7$$\n• Encontraste el primer número de la secuencia, que es **32** ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$).\n• Luego reconociste que el ciclo de repetición está dado por el Mínimo Común Múltiplo entre 5 y 7, es decir, $\\text{mcm}(5,7) = 35$.\n• Por lo tanto, el **SEGUNDO número** de la lista creciente es exactamente $32 + 35 = 67$.\n\n**Estrategia para no olvidar:**\nCada vez que tengas restos en divisiones simultáneas, encuentra el primer término y suma el MCM de los divisores para hallar los términos siguientes.",
-        explicacionErrorB: "### ⚠️ ANÁLISIS ESPECÍFICO DE TU ERROR (Alternativa B: 32)\n\n**1. ¿Por qué te equivocaste al seleccionar la B?**\nCometiste una distracción de lectura muy frecuente en la PAES M2: al calcular correctamente los valores que cumplen las condiciones, encontraste el número **32** ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$) y lo marcaste de inmediato. Sin embargo, el **32 es el PRIMER número** de la lista creciente, mientras que la pregunta exige hallar el **SEGUNDO número**.\n\n---\n\n### 📘 DESARROLLO MATEMÁTICO PASO A PASO\n\n**Paso 1: Expresar los números algebraicamente**\nUn número $x$ que deja resto 2 al dividir por 5 se escribe como $x = 5k + 2$.\nUn número $x$ que deja resto 4 al dividir por 7 se escribe como $x = 7m + 4$.\n\n**Paso 2: Hallar el primer término de la lista**\nEvaluamos valores de $x = 7m + 4$ que también dejen resto 2 al dividir por 5:\n- Para $m = 0 \\implies x = 4$ (Resto 4 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 1 \\implies x = 11$ (Resto 1 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 2 \\implies x = 18$ (Resto 3 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 3 \\implies x = 25$ (Resto 0 al dividir por 5 $\\rightarrow$ No cumple).\n- Para $m = 4 \\implies x = 32$ (Resto 2 al dividir por 5 $\\rightarrow$ **¡Cumple!**).\n\nEl **1.er número** de la lista es **32**.\n\n**Paso 3: Calcular el segundo número**\nComo los divisores son 5 y 7 (números primos entre sí), la propiedad indica que los números que cumplen esta condición se repiten cada $\\text{mcm}(5,7) = 35$ unidades.\n- 1.er número = $32$\n- **2.º número** = $32 + 35 = 67$\n- 3.er número = $67 + 35 = 102$\n\n---\n\n### 🎯 FOCO EN LA HABILIDAD: RESOLUCIÓN DE PROBLEMAS M2\nPara dominar esta habilidad, no basta con realizar los cálculos bien; debes volver a leer la pregunta antes de marcar. El DEMRE siempre coloca la respuesta del primer paso intermedio (en este caso 32) como distractor principal."
+        dataFeedback: {
+          acierto: {
+            titulo: "¡Excelente razonamiento matemático!",
+            mensajePositivo: "¡Demostraste dominio total del concepto! Identificaste la trampa del primer término y encontraste la solución correcta.",
+            pasos: [
+              "Formulaste el sistema congruencial: $x \\equiv 2 \\pmod 5$ y $x \\equiv 4 \\pmod 7$.",
+              "Identificaste que $32$ es el primer término de la lista creciente.",
+              "Sumaste el mínimo común múltiplo $\\text{mcm}(5,7) = 35$ obteniendo: $32 + 35 = 67$."
+            ],
+            habilidadClave: "Resolución de Problemas M2: Capacidad para perseverar y verificar las restricciones específicas planteadas por el DEMRE."
+          },
+          errorMap: {
+            0: {
+              tituloError: "Análisis del Error en Alternativa A (17)",
+              queSucedio: "Elegiste $17$, que cumple dejar resto 3 al dividir por 7 ($17 = 7 \\cdot 2 + 3$), pero **no cumple** dejar resto 4 como exige el problema.",
+              pasosCorrectos: [
+                "Planteamiento algebraico: $x = 5k + 2$ y $x = 7m + 4$.",
+                "Evaluación del 1.er valor válido: $x = 32$ ($32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$).",
+                "Cálculo del 2.º valor creciente: $32 + \\text{mcm}(5,7) = 32 + 35 = 67$."
+              ],
+              habilidadClave: "Verifica siempre que el número seleccionado cumpla ambas condiciones simultáneamente antes de marcar."
+            },
+            1: {
+              tituloError: "Análisis del Error en Alternativa B (32)",
+              queSucedio: "¡Hiciste el cálculo matemático principal de forma brillante! Encontraste el número $32$, pero este es el **PRIMER número** de la lista creciente. La pregunta exige hallar el **SEGUNDO número**.",
+              pasosCorrectos: [
+                "1.er número válido: $x = 32$ (Cumple $32 = 5 \\cdot 6 + 2$ y $32 = 7 \\cdot 4 + 4$).",
+                "El patrón se repite cada $\\text{mcm}(5,7) = 35$ unidades.",
+                "2.º número de la lista: $32 + 35 = 67$."
+              ],
+              habilidadClave: "Atención a la lectura final: El DEMRE suele poner el resultado del paso intermedio (32) como distractor principal."
+            },
+            3: {
+              tituloError: "Análisis del Error en Alternativa D (137)",
+              queSucedio: "Obtuviste $137$, el cual corresponde al **CUARTO número** de la lista ($32 + 35 \\cdot 3 = 137$), adelantándote dos posiciones en la secuencia.",
+              pasosCorrectos: [
+                "1.er número: $32$",
+                "2.º número (solicitado): $32 + 35 = 67$",
+                "3.er número: $67 + 35 = 102$",
+                "4.º número: $102 + 35 = 137$"
+              ],
+              habilidadClave: "Sigue el orden estricto de la secuencia para no sobreestimar la posición solicitada."
+            }
+          }
+        }
       }
     ];
 
-    // Autogenerar los demás ítems con plantilla estructurada
+    // Autogenerar ítems 2 al 55 con estructura visual coherente
     for (let i = 2; i <= 55; i++) {
       const num = String(i).padStart(2, '0');
       let eje = "Números";
@@ -85,11 +128,33 @@
         eje: eje,
         habilidad: habilidad,
         imagen: `img/m2_2027_q${num}.png`,
-        texto: `Ejercicio oficial M2 número ${i} correspondiente a ${eje}.`,
+        texto: `Ejercicio oficial M2 número ${i} del eje ${eje}.`,
         opciones: ["A", "B", "C", "D"],
         correcta: 0,
-        explicacionAcierto: `### 🌟 CONSOLIDACIÓN DEL ACIERTO Y LA HABILIDAD\n\n¡Excelente trabajo! Marcaste la opción correcta en el ítem de **${eje}**.\n\n**Demostración y Refuerzo:**\n• Aplicaste correctamente la propiedad fundamental de la habilidad **${habilidad}**.\n• Mantuviste el control de las operaciones algebraicas sin omitir restricciones.\n\nSigue aplicando esta estrategia para afianzar el contenido.`,
-        explicacionErrorB: `### ⚠️ ANÁLISIS ESPECÍFICO DE TU ERROR\n\n**1. Diagnóstico del error:**\nAl elegir esta alternativa, caíste en el distractor típico del DEMRE para **${eje}**: aplicaste una propiedad incompleta o confundiste el signo al despejar la variable principal.\n\n---\n\n### 📘 DESARROLLO MATEMÁTICO PASO A PASO\n1. **Paso 1:** Identificación de variables y condiciones iniciales.\n2. **Paso 2:** Aplicación del teorema o propiedad correspondiente en ${eje}.\n3. **Paso 3:** Despeje y verificación del resultado final.\n\n---\n\n### 🎯 FOCO EN LA HABILIDAD: ${habilidad}\nRecuerda revisar siempre la condición de validez antes de finalizar el desarrollo.`
+        dataFeedback: {
+          acierto: {
+            titulo: "¡Excelente trabajo! Marcaste la alternativa correcta",
+            mensajePositivo: `Demostraste una sólida comprensión de las propiedades de ${eje}. ¡Sigue así!`,
+            pasos: [
+              `Identificaste los datos clave del problema de ${eje}.`,
+              "Aplicaste la propiedad matemática sin omitir ninguna restricción.",
+              "Llegaste al resultado exacto de forma ordenada."
+            ],
+            habilidadClave: `${habilidad}: Capacidad para aplicar modelos abstractos a situaciones complejas.`
+          },
+          errorMap: {
+            1: {
+              tituloError: "Análisis del Error en la Selección",
+              queSucedio: `Al seleccionar esta alternativa, aplicaste una propiedad parcial o cometiste una distracción al despejar la expresión en ${eje}.`,
+              pasosCorrectos: [
+                "Paso 1: Identificar las condiciones del enunciado.",
+                "Paso 2: Aplicar la definición formal del eje sin omitir el cambio de signo.",
+                "Paso 3: Verificar que el valor obtenido sea admisible."
+              ],
+              habilidadClave: `Revisa cuidadosamente cada paso operativo para afianzar la habilidad de ${habilidad}.`
+            }
+          }
+        }
       });
     }
 
@@ -146,9 +211,6 @@
       const [currentIndex, setCurrentIndex] = useState(0);
       const [selectedOption, setSelectedOption] = useState(null);
       const [showFeedback, setShowFeedback] = useState(false);
-
-      const [aiAnalysis, setAiAnalysis] = useState("");
-      const [loadingAiAnalysis, setLoadingAiAnalysis] = useState(false);
 
       const [chatMessages, setChatMessages] = useState([
         { sender: "bot", text: "¡Hola! Soy tu **Tutor IA M1 y M2**. Pregúntame sobre cualquier concepto: *geometría, volumen de cilindros/conos, logaritmos, vectores o probabilidad condicional*." }
@@ -220,65 +282,6 @@
         alert("¡Contraseña actualizada exitosamente!");
       };
 
-      const analyzeQuestionWithAI = async (optionIdx, pregunta) => {
-        setLoadingAiAnalysis(true);
-        setAiAnalysis("");
-
-        const isCorrect = optionIdx === pregunta.correcta;
-        const selectedLetter = ["A", "B", "C", "D"][optionIdx];
-        const keyToUse = apiKey || "AIzaSyBPMqJwnd6Li7EPkqZ1n_D7lTVbTknNam8";
-
-        try {
-          const promptText = `
-Eres un profesor de matemáticas pedagógico de excelencia para la prueba de selección chilena PAES M2.
-Analiza la siguiente pregunta de la PAES M2 (${pregunta.code}):
-"${pregunta.texto}"
-
-Opciones: A) ${pregunta.opciones[0]} | B) ${pregunta.opciones[1]} | C) ${pregunta.opciones[2]} | D) ${pregunta.opciones[3]}
-
-El estudiante seleccionó la alternativa **${selectedLetter}**.
-Su respuesta es: ${isCorrect ? "CORRECTA" : "INCORRECTA"}.
-
-INSTRUCCIONES PEDAGÓGICAS RIGUROSAS:
-1. SI ES INCORRECTA:
-   - Sección 1: Explica de forma SUPER ESPECÍFICA cuál fue el error conceptual o distractor exacto que cometió al elegir la opción ${selectedLetter} (por ejemplo, si marcó el primer término en lugar del segundo).
-   - Sección 2: Muestra el desarrollo matemático PASO A PASO con explicaciones claras de cada propiedad utilizada.
-   - Sección 3: Concluye reforzando explícitamente cómo aplicar la habilidad evaluada: **${pregunta.habilidad}**.
-
-2. SI ES CORRECTA:
-   - Argumenta pedagógicamente por qué la alternativa ${selectedLetter} es la correcta.
-   - Refuerza el procedimiento y la habilidad **${pregunta.habilidad}** para consolidar el conocimiento y evitar aciertos por azar.
-
-Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación matemática.
-`;
-
-          const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${keyToUse}`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
-            }
-          );
-
-          const data = await response.json();
-          if (data.candidates && data.candidates[0] && data.candidates[0].content.parts[0].text) {
-            setAiAnalysis(data.candidates[0].content.parts[0].text);
-          } else {
-            throw new Error("Respuesta no obtenida");
-          }
-        } catch (err) {
-          // FALLBACK PEDAGÓGICO COMPLETO Y ESTRUCTURADO
-          if (!isCorrect) {
-            setAiAnalysis(pregunta.explicacionErrorB || pregunta.explicacionAcierto);
-          } else {
-            setAiAnalysis(pregunta.explicacionAcierto);
-          }
-        } finally {
-          setLoadingAiAnalysis(false);
-        }
-      };
-
       const handleAnswer = (optionIdx) => {
         if (showFeedback) return;
         setSelectedOption(optionIdx);
@@ -292,14 +295,11 @@ Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación mate
             pts: currentPts + 15
           });
         }
-
-        analyzeQuestionWithAI(optionIdx, currentPregunta);
       };
 
       const handleNextQuestion = () => {
         setSelectedOption(null);
         setShowFeedback(false);
-        setAiAnalysis("");
         if (currentIndex + 1 < preguntasFiltradas.length) {
           setCurrentIndex(currentIndex + 1);
         } else {
@@ -427,6 +427,16 @@ Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación mate
       const activeStudent = users[selectedStudentKey] || DEFAULT_USERS[selectedStudentKey];
       const displayedProfile = currentUser.role === "docente" ? activeStudent : (users[currentUser.id] || currentUser);
 
+      // OBTENER RETROALIMENTACIÓN ORGANIZADA
+      const isCorrect = selectedOption === currentPregunta.correcta;
+      const feedbackData = currentPregunta.dataFeedback;
+      const errorDetail = feedbackData?.errorMap?.[selectedOption] || {
+        tituloError: "Análisis de la Elección Seleccionada",
+        queSucedio: "Cometiste una distracción al evaluar las variables del problema.",
+        pasosCorrectos: ["Paso 1: Identifica las condiciones.", "Paso 2: Desarrolla algebraicamente.", "Paso 3: Verifica la solución."],
+        habilidadClave: "Mantén la concentración al leer la pregunta final."
+      };
+
       return (
         <div className="flex flex-col min-h-screen bg-slate-950">
           {currentUser.role === "docente" && (
@@ -525,13 +535,13 @@ Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación mate
                     <span className="text-xs text-slate-400 font-mono">Ítem {currentIndex + 1} de {preguntasFiltradas.length}</span>
                   </div>
 
-                  {/* VISOR DIRECTO DE LA IMAGEN EN img/ */}
+                  {/* VISOR DIRECTO DE LA IMAGEN EN LA CARPETA img/ */}
                   <DirectQuestionViewer 
                     src={currentPregunta.imagen} 
                     alt={`Ejercicio ${currentPregunta.code}`} 
                   />
 
-                  {/* SELECCIÓN DE ALTERNATIVAS A, B, C, D */}
+                  {/* ALTERNATIVAS A, B, C, D */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
                     {currentPregunta.opciones.map((val, idx) => {
                       const letter = ["A", "B", "C", "D"][idx];
@@ -561,35 +571,82 @@ Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación mate
                     })}
                   </div>
 
-                  {/* RETROALIMENTACIÓN PROFUNDA (ANÁLISIS DEL ERROR + PASO A PASO + HABILIDAD) */}
+                  {/* RETROALIMENTACIÓN PEDAGÓGICA ORGANIZADA EN TARJETAS CON KATEX */}
                   {showFeedback && (
-                    <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 space-y-4">
+                    <div className="space-y-4 pt-2">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                        <span className="text-xs font-bold uppercase px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-500/30">
-                          Habilidad DEMRE Evaluada: {currentPregunta.habilidad}
+                        <span className="text-xs font-bold uppercase px-3 py-1.5 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-500/30">
+                          Habilidad DEMRE: {currentPregunta.habilidad}
                         </span>
-                        {selectedOption === currentPregunta.correcta ? (
-                          <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
+                        {isCorrect ? (
+                          <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1.5 rounded-full border border-emerald-500/30">
                             ¡Respuesta Correcta! (+15 pts)
                           </span>
                         ) : (
-                          <span className="text-xs font-bold text-rose-400 bg-rose-950/60 px-3 py-1 rounded-full border border-rose-500/30">
-                            Respuesta Incorrecta — Revisa el Análisis del Error
+                          <span className="text-xs font-bold text-rose-400 bg-rose-950/60 px-3 py-1.5 rounded-full border border-rose-500/30">
+                            Respuesta Incorrecta — Revisa el Análisis
                           </span>
                         )}
                       </div>
 
-                      {loadingAiAnalysis ? (
-                        <div className="p-6 bg-slate-900/80 rounded-xl border border-blue-500/30 text-center space-y-3">
-                          <div className="inline-block w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
-                          <p className="text-xs text-blue-300 font-bold animate-pulse">
-                            Generando análisis pedagógico en tiempo real con IA...
-                          </p>
+                      {/* TARJETA 1: CASO ACIERTO (VERDE) */}
+                      {isCorrect && (
+                        <div className="bg-emerald-950/30 border border-emerald-500/40 p-5 rounded-2xl space-y-4">
+                          <div className="flex items-center space-x-2 text-emerald-400 font-bold text-base">
+                            <span>🌟</span>
+                            <h3>{feedbackData?.acierto?.titulo}</h3>
+                          </div>
+                          <p className="text-xs text-slate-200">{feedbackData?.acierto?.mensajePositivo}</p>
+                          
+                          <div className="bg-slate-950/60 p-4 rounded-xl border border-emerald-500/20 space-y-2 text-xs">
+                            <p className="font-bold text-emerald-300 uppercase tracking-wider">Pasos de Confirmación:</p>
+                            {feedbackData?.acierto?.pasos.map((paso, pIdx) => (
+                              <div key={pIdx} className="flex items-start space-x-2 text-slate-300">
+                                <span className="text-emerald-400 font-bold">•</span>
+                                <LatexRenderer text={paso} />
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      ) : (
+                      )}
+
+                      {/* TARJETA 2: CASO ERROR (ANÁLISIS ESPECÍFICO) */}
+                      {!isCorrect && (
                         <div className="space-y-4">
-                          <div className="text-sm text-slate-200 leading-relaxed bg-slate-900/90 p-5 rounded-xl border border-slate-800">
-                            <LatexRenderer text={aiAnalysis || "Análisis no disponible."} />
+                          {/* 2A. MENSAJE POSITIVO Y DIAGNÓSTICO DEL ERROR */}
+                          <div className="bg-amber-950/20 border border-amber-500/40 p-5 rounded-2xl space-y-3">
+                            <div className="flex items-center space-x-2 text-amber-400 font-bold text-base">
+                              <span>💪</span>
+                              <h3>¡No te desanimes! El error es parte clave del aprendizaje</h3>
+                            </div>
+                            <div className="bg-slate-950/70 p-4 rounded-xl border border-amber-500/20 text-xs space-y-2">
+                              <p className="font-bold text-amber-300 uppercase tracking-wider">{errorDetail.tituloError}:</p>
+                              <LatexRenderer text={errorDetail.queSucedio} className="text-slate-200 leading-relaxed" />
+                            </div>
+                          </div>
+
+                          {/* 2B. DESARROLLO MATEMÁTICO PASO A PASO CON KATEX */}
+                          <div className="bg-slate-950/80 border border-slate-800 p-5 rounded-2xl space-y-3">
+                            <div className="flex items-center space-x-2 text-blue-400 font-bold text-sm">
+                              <span>📘</span>
+                              <p className="uppercase tracking-wider">Desarrollo Matemático Paso a Paso:</p>
+                            </div>
+                            <div className="space-y-2 text-xs">
+                              {errorDetail.pasosCorrectos.map((paso, pIdx) => (
+                                <div key={pIdx} className="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                                  <LatexRenderer text={paso} />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* 2C. CONSOLIDACIÓN DE LA HABILIDAD */}
+                          <div className="bg-indigo-950/30 border border-indigo-500/30 p-4 rounded-xl text-xs space-y-1">
+                            <p className="font-bold text-indigo-300 flex items-center space-x-2">
+                              <span>🎯</span>
+                              <span>Foco en la Habilidad DEMRE:</span>
+                            </p>
+                            <LatexRenderer text={errorDetail.habilidadClave} className="text-slate-300" />
                           </div>
                         </div>
                       )}
@@ -597,7 +654,7 @@ Usa KaTeX ($ para fórmulas en línea, $$ para bloques) para toda notación mate
                       <div className="pt-2 flex justify-end">
                         <button 
                           onClick={handleNextQuestion} 
-                          className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-6 py-3 rounded-lg transition"
+                          className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-6 py-3 rounded-xl transition shadow-lg shadow-blue-600/30"
                         >
                           Siguiente Ejercicio →
                         </button>
